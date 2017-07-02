@@ -59,4 +59,4 @@
 
 *   8.建议打开Auto Import
 
-    ![Auto Import](https://raw.githubusercontent.com/Andy888888/AF_RequestManager/master/AF_RequestManager/Assets.xcassets/AppIcon.appiconset/network_58.png "Auto Import")<br><br>
+    ![Auto Import](https://raw.githubusercontent.com/CentaFrameWork/APlusFramework/master/auto_import.png "Auto Import")<br><br>
