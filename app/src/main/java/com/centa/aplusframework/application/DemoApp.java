@@ -19,7 +19,7 @@ import okhttp3.OkHttpClient;
  * <p>
  * 描述:项目application总入口
  */
-public class DemoApplications extends LitePalApplication {
+public class DemoApp extends LitePalApplication {
     @Override
     public void onCreate() {
         super.onCreate();
