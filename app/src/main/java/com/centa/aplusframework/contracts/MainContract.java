@@ -19,7 +19,7 @@ import rx.Observable;
 public interface MainContract {
 
     // TODO: 2017/6/28 以下的 P-V-M 的声明顺序要一致.(Google官方contract中不包含M.)
-    // TODO: 官方mvp地址：https://github.com/googlesamples/android-architecture/tree/todo-mvp/
+    // TODO: 2017/6/28 官方mvp地址：https://github.com/googlesamples/android-architecture/tree/todo-mvp/
 
     /**
      * P
