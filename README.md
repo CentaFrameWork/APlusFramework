@@ -29,12 +29,16 @@
 ```
 *   4.注释掉的代码请删除
 *   5.Layout布局文件命名规范
+```
     1.Activity的布局：act_+页面名称。
     2.Adapter的布局：item_，+列表名称。（楼盘列表：item_est_list）
     3.普通布局：layout_+用途。
     4.灵活运用<include>、<merge>、<ViewStub> 标签
+    
+```
 
 *   6.【Layout布局文件id命名规范】
+```
     	控件缩写+页面+功能
         1)	LinearLayout :ll_
         2)	RelativeLayout:rl_
@@ -43,8 +47,11 @@
         5)	ImageView:img_
         6)	ImageButton:imgb_
         7)	Button:btn_
+```
 *   7.string.xml内部命名规范
+```
         act_页面模块_功能
         fm_页面模块_功能
         公共部分 public_
         多次出现的名称也可以列进公共
+```
