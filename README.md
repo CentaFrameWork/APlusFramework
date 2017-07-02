@@ -1,5 +1,5 @@
-# APlusFramework
-#### Android APlus框架
+
+# APlusFramework - Android APlus框架
 
 ##【注意事项】
     1.了解框架前，请将所有的TODO看完，里面有需要注意的事项 or 实现原理 or 源码地址.
@@ -17,21 +17,21 @@
     8.请项目参与者所有人保持一周一次 code review !
 
 ##【Android平台规范】
-    1.`安装CheckStyle插件，提交代码前，请用CheckStyle检查，并解决不规范的代码.`
-    2.`xml中不可包含静态字符串，请抽出到string资源文件.（请合理分类，项目中有示例）`
+    1.安装CheckStyle插件，提交代码前，请用CheckStyle检查，并解决不规范的代码.
+    2.xml中不可包含静态字符串，请抽出到string资源文件.（请合理分类，项目中有示例）
     3./**
        * Created by ${USER} on ${DATE}.
        * <p>
        * 描述:待描述
        */
-    4.`注释掉的代码请删除`
-    5.`【Layout布局文件命名规范】`
+    4.注释掉的代码请删除
+    5.【Layout布局文件命名规范】
         1)	Activity的布局：act_+页面名称。
         2)	Adapter的布局：item_，+列表名称。（楼盘列表：item_est_list）
         3)	普通布局：layout_+用途。
         4)	灵活运用<include>、<merge>、<ViewStub> 标签
 
-    6.`【Layout布局文件id命名规范】`
+    6.【Layout布局文件id命名规范】
     	控件缩写+页面+功能
         1)	LinearLayout :ll_
         2)	RelativeLayout:rl_
