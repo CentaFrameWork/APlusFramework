@@ -28,11 +28,11 @@
      */
 ```
 *   4.注释掉的代码请删除
-*   5.【Layout布局文件命名规范】
-        1.Activity的布局：act_+页面名称。
-        2.Adapter的布局：item_，+列表名称。（楼盘列表：item_est_list）
-        3.普通布局：layout_+用途。
-        4.灵活运用<include>、<merge>、<ViewStub> 标签
+*   5.Layout布局文件命名规范
+    1.Activity的布局：act_+页面名称。
+    2.Adapter的布局：item_，+列表名称。（楼盘列表：item_est_list）
+    3.普通布局：layout_+用途。
+    4.灵活运用<include>、<merge>、<ViewStub> 标签
 
 *   6.【Layout布局文件id命名规范】
     	控件缩写+页面+功能
