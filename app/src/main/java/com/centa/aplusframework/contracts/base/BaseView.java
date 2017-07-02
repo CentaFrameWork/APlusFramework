@@ -3,6 +3,8 @@ package com.centa.aplusframework.contracts.base;
 import android.content.Context;
 import android.support.annotation.StringRes;
 
+import com.centa.centacore.http.exception.ApiException;
+
 /**
  * Created by yanwenqiang on 2017/6/28.
  * <p>
@@ -25,4 +27,11 @@ public interface BaseView {
      * Toast统一显示入口
      */
     void toast(String text);
+
+    /**
+     * 取消dialog
+     */
+    void cancelLoadingDialog();
+
+    void apiError(ApiException apiException);
 }

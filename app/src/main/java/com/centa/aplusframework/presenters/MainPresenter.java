@@ -68,14 +68,8 @@ public class MainPresenter extends MainContract.Presenter {
                 .subscribe(new APlusSubscriber<APlusRespDo<ArrayList<PermUserInfoDo>>>() {
                     @Override
                     protected void error(ApiException e) {
-                        switch (e.code) {
-                            case 1000:
-                                // dosomething...
-                                break;
-                            default:
-                                selfView.toast(e.message);
-                                break;
-                        }
+                        selfView.cancelLoadingDialog();
+                        selfView.apiError(e);
                     }
 
                     @Override

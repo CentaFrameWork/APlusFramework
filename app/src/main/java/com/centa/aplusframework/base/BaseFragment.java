@@ -35,6 +35,11 @@ public abstract class BaseFragment extends AbsFragment implements BaseView {
         super.toast(text);
     }
 
+    @Override
+    public void cancelLoadingDialog() {
+        super.cancelLoadingDialog();
+    }
+
     /**
      * 处理 A+ Api 错误对象整理为统一的ApiException<p>
      * 绑定生命周期<p>

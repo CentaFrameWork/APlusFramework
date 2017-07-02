@@ -7,6 +7,8 @@ import com.centa.aplusframework.contracts.base.BaseView;
 import com.centa.aplusframework.model.respdo.APlusRespDo;
 import com.centa.aplusframework.rx.APlusTransformer;
 import com.centa.centacore.base.AbsActivity;
+import com.centa.centacore.http.exception.ApiException;
+import com.centa.centacore.utils.WLog;
 import com.trello.rxlifecycle.android.ActivityEvent;
 
 /**
@@ -47,6 +49,25 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
     @Override
     public void toast(String text) {
         super.toast(text);
+    }
+
+    @Override
+    public void cancelLoadingDialog() {
+        super.cancelLoadingDialog();
+    }
+
+    /**
+     * A+ Api错误
+     */
+    public void apiError(ApiException apiException) {
+        switch (apiException.code) {
+            case 1000:
+                WLog.e("native onNext error", apiException, 5);
+                break;
+            default:
+                toast(apiException.message);
+                break;
+        }
     }
 
     /**
