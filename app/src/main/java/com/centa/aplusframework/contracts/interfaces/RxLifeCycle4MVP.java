@@ -2,6 +2,7 @@ package com.centa.aplusframework.contracts.interfaces;
 
 import android.support.annotation.NonNull;
 
+import com.centa.aplusframework.rx.APlusTransformer;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.trello.rxlifecycle.android.ActivityEvent;
 
@@ -17,4 +18,11 @@ public interface RxLifeCycle4MVP {
      * 生命周期绑定
      */
     <T> LifecycleTransformer<T> bindUntilEvent(@NonNull ActivityEvent event);
+
+    /**
+     * 处理 A+ Api 错误对象整理为统一的ApiException<p>
+     * 绑定生命周期<p>
+     * 约束transfer回不同状态下指定完整实体
+     */
+    <T> APlusTransformer<T> bindAPlusTransformer();
 }

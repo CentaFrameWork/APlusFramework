@@ -50,12 +50,9 @@ public class MainPresenter extends MainContract.Presenter {
                     }
                 });
 
-        // TODO: 2017/6/28 亦可使用以下方式，改为Action1
-
+        // TODO: 2017/6/28 亦可使用以下方式，改为Action1。默认subscribeOn在IO，observeOn在mainThread，可不指定
 //        selfModel.userPermission(selfView.getStaffNo())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .compose(selfView.<APlusRespDo<ArrayList<PermUserInfoDo>>>bindUntilEvent(ActivityEvent.DESTROY))
+//                .compose(selfView.<ArrayList<PermUserInfoDo>>bindAPlusTransformer())
 //                .subscribe(new Action1<APlusRespDo<ArrayList<PermUserInfoDo>>>() {
 //                    @Override
 //                    public void call(APlusRespDo<ArrayList<PermUserInfoDo>> arrayListAPlusRespDo) {

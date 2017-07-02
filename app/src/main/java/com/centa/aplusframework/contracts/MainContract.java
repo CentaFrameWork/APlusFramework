@@ -40,6 +40,7 @@ public interface MainContract {
      * V
      */
     interface View extends BaseView, RxLifeCycle4MVP {
+        // TODO: 2017/7/2 这里View继承BaseView为了拥有基本的方法引用，最终实现类或者其父类要实现RxLifeCycle4MVP接口中的方法
         String getStaffNo();
 
         String getPwd();

@@ -3,7 +3,7 @@ package com.centa.centacore.http.exception;
 /**
  * Created by yanwenqiang on 17/6/19.
  * <p>
- * 描述:API Exception
+ * 描述:Common API Exception
  */
 
 public final class ApiException extends RuntimeException {
