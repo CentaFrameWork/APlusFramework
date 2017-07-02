@@ -15,6 +15,7 @@
 *   6.类设计，请注意category，特别是Util工具类.  
 *   7.公用的，且完全不与业务耦合,单独纯粹的 工具／ widget / custom view 等等，请放置到核心Library中.  
 *   8.请项目参与者所有人保持一周一次 code review !  
+*   9.组内任何成员不得擅自创造个人规范，需全组开会讨论确定规范。
 
 ## Android平台规范
 *   1.安装CheckStyle插件，提交代码前，请用CheckStyle检查，并解决不规范的代码.
