@@ -1,6 +1,7 @@
 package com.centa.aplusframework.base;
 
 import android.content.Context;
+import android.support.annotation.StringRes;
 
 import com.centa.aplusframework.contracts.base.BaseView;
 import com.centa.aplusframework.model.respdo.APlusRespDo;
@@ -21,7 +22,17 @@ public abstract class BaseFragment extends AbsFragment implements BaseView {
      */
     @Override
     public Context getContext() {
-        return getContext();
+        return getActivity();
+    }
+
+    @Override
+    public void toast(@StringRes int id) {
+        super.toast(id);
+    }
+
+    @Override
+    public void toast(String text) {
+        super.toast(text);
     }
 
     /**

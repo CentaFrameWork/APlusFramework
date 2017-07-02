@@ -1,6 +1,7 @@
 package com.centa.aplusframework.contracts.base;
 
 import android.content.Context;
+import android.support.annotation.StringRes;
 
 /**
  * Created by yanwenqiang on 2017/6/28.
@@ -14,4 +15,14 @@ public interface BaseView {
      * @return 上下文
      */
     Context getContext();
+
+    /**
+     * Toast统一显示入口
+     */
+    void toast(@StringRes int id);
+
+    /**
+     * Toast统一显示入口
+     */
+    void toast(String text);
 }

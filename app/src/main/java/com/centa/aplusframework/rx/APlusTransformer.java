@@ -5,7 +5,9 @@ import com.centa.centacore.http.exception.ApiException;
 import com.trello.rxlifecycle.LifecycleTransformer;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by yanwenqiang on 2017/7/2.
@@ -24,6 +26,8 @@ public class APlusTransformer<T> implements
     @Override
     public Observable<APlusRespDo<T>> call(Observable<APlusRespDo<T>> observable) {
         return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Func1<APlusRespDo<T>, APlusRespDo<T>>() {
                     @Override
                     public APlusRespDo<T> call(APlusRespDo<T> aPlusRespDo) {

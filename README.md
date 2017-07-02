@@ -56,3 +56,7 @@
     公共部分 public_
     多次出现的名称也可以列进公共
 ```
+
+*   8.建议打开Auto Import
+
+    ![Auto Import](https://raw.githubusercontent.com/Andy888888/AF_RequestManager/master/AF_RequestManager/Assets.xcassets/AppIcon.appiconset/network_58.png "Auto Import")<br><br>
