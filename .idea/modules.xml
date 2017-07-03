@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APlusFramework.iml" filepath="$PROJECT_DIR$/APlusFramework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/APlusFramework.iml" filepath="$PROJECT_DIR$/APlusFramework.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/centacore/centacore.iml" filepath="$PROJECT_DIR$/centacore/centacore.iml" />
       <module fileurl="file://$PROJECT_DIR$/centacore/centacore.iml" filepath="$PROJECT_DIR$/centacore/centacore.iml" />
     </modules>
   </component>
