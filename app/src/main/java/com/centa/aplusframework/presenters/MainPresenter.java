@@ -7,6 +7,8 @@ import com.centa.aplusframework.rx.APlusSubscriber;
 import com.centa.centacore.http.exception.ApiException;
 import com.centa.centacore.utils.WLog;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,5 +88,10 @@ public class MainPresenter extends MainContract.Presenter {
                         selfView.showUser(name);
                     }
                 });
+    }
+
+    @Override
+    public void testEventBus() {
+        EventBus.getDefault().post("测试EventBus----->>");
     }
 }

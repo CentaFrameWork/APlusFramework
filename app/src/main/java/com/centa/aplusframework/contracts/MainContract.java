@@ -34,6 +34,11 @@ public interface MainContract {
          * 登录
          */
         public abstract void login();
+
+        /**
+         * 测试EventBus
+         */
+        public abstract void testEventBus();
     }
 
     /**

@@ -20,7 +20,7 @@ import com.trello.rxlifecycle.android.ActivityEvent;
 public abstract class BaseActivity extends AbsActivity implements BaseView {
     // TODO: 2017/6/26 计划加入框架的内容
     // 1.热更新    ----------------------------->待认领
-    // 2.EventBus   --------------------------->待认领
+    // 2.EventBus   --------------------------->【ok】
     // 3.添加常用的HttpTransformer   ----------->【ok】
     // 4.MVP项目结构    ------------------------>【ok】
     // 5.FakeInterceptor 的完善    ------------->燕文强
@@ -30,7 +30,6 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
     // 9.百度地图（gradle）   ------------------>待认领
     // 10.图片选择（包括裁剪）    --------------->待认领
     // 11.每次切换环境修改大量极光工程名称问题    -->待认领
-
     
     /**
      * 这个看似无价值，请不要删除，为P层getContext做引用
