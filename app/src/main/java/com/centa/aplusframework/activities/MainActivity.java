@@ -94,6 +94,7 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         } else {
             return account;
         }
+        
     }
 
     @Override
