@@ -53,7 +53,6 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         presenter = new MainPresenter(this, new MainModel());
     }
 
-
     @OnClick({R.id.btn_sign_in, R.id.btn_eventbus})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -79,12 +78,10 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         }
     }
 
-
     @Override
     protected void initComplete() {
 
     }
-
 
     @Override
     public String getStaffNo() {
@@ -94,7 +91,6 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         } else {
             return account;
         }
-        
     }
 
     @Override
@@ -112,7 +108,6 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         cancelLoadingDialog();
         toast(userName);
     }
-
 
     @Override
     public void request() {

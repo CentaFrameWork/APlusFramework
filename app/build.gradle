@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    applicationId "com.centa.aplusframework" //JPush上注册的包名.
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
     defaultConfig {
