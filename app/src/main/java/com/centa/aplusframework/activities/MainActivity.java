@@ -2,7 +2,6 @@ package com.centa.aplusframework.activities;
 
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +12,19 @@ import com.centa.aplusframework.contracts.MainContract;
 import com.centa.aplusframework.presenters.MainPresenter;
 import com.centa.aplusframework.repository.MainModel;
 import com.centa.centacore.interfaces.ISingleRequest;
+import com.centa.centacore.utils.WLog;
+import com.jakewharton.rxbinding.view.RxView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.functions.Action1;
 
 /**
  * A login screen that offers login via email/password.
@@ -40,7 +44,7 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
 
     @Override
     protected int layoutResId() {
-        return R.layout.activity_login;
+        return R.layout.act_login;
     }
 
     @Override
@@ -52,31 +56,26 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
     @Override
     protected void initViews() {
         presenter = new MainPresenter(this, new MainModel());
-    }
-
-    @OnClick({R.id.btn_sign_in, R.id.btn_eventbus})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            //  登录点击事件
-            case R.id.btn_sign_in:
-                loadingDialog("我的数据已提交，请耐心等待...");
-                mSignInBtn.postDelayed(new Runnable() {
+        RxView.clicks(mSignInBtn)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
                     @Override
-                    public void run() {
+                    public void call(Void aVoid) {
+                        WLog.p("点击一次");
+                        loadingDialog(getString(R.string.request_doing));
                         presenter.login();
                     }
-                }, 1000);
-                break;
-            //  测试EventBus
-            case R.id.btn_eventbus:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        presenter.testEventBus();
-                    }
-                }).start();
-                break;
-        }
+                });
+    }
+
+    @OnClick({R.id.btn_eventbus})
+    public void onEventbusClick() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                presenter.testEventBus();
+            }
+        }).start();
     }
 
     @Override
@@ -107,9 +106,9 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
     @Override
     public void showUser(String userName) {
         cancelLoadingDialog();
-        toast(userName);
 
         Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(TITLE_ACTIVITY, userName);
         startActivity(intent);
     }
 

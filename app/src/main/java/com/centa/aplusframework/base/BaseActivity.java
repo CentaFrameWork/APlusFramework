@@ -3,6 +3,7 @@ package com.centa.aplusframework.base;
 import android.content.Context;
 import android.support.annotation.StringRes;
 
+import com.centa.aplusframework.BuildConfig;
 import com.centa.aplusframework.contracts.base.BaseView;
 import com.centa.aplusframework.model.respdo.APlusRespDo;
 import com.centa.aplusframework.rx.APlusTransformer;
@@ -63,6 +64,10 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
     public void apiError(ApiException apiException) {
         switch (apiException.code) {
             case 1000:
+                // TODO: 2017/7/7 打包时记得将BuildType的debugable改为false，内部错误将不会展示
+                if (BuildConfig.DEBUG) {
+                    snack(apiException.toString());
+                }
                 WLog.e("native onNext error", apiException, 5);
                 break;
             default:

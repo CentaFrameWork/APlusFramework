@@ -26,7 +26,9 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        setUniversalToolbar("刘德华");
+        String title = getIntent().getExtras().getString(TITLE_ACTIVITY);
+        snack(title);
+        setUniversalToolbar(title);
     }
 
     @Override
