@@ -1,5 +1,6 @@
 package com.centa.aplusframework.activities;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -107,6 +108,9 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
     public void showUser(String userName) {
         cancelLoadingDialog();
         toast(userName);
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
