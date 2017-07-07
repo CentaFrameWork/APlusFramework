@@ -5,6 +5,7 @@ import android.view.View;
 import com.centa.aplusframework.R;
 import com.centa.aplusframework.base.BaseActivity;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -20,7 +21,7 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-
+        ButterKnife.bind(this);
     }
 
     @Override
