@@ -2,6 +2,7 @@ package com.centa.aplusframework.base;
 
 import android.content.Context;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 import com.centa.aplusframework.BuildConfig;
 import com.centa.aplusframework.contracts.base.BaseView;
@@ -10,7 +11,12 @@ import com.centa.aplusframework.rx.APlusTransformer;
 import com.centa.centacore.base.AbsActivity;
 import com.centa.centacore.http.exception.ApiException;
 import com.centa.centacore.utils.WLog;
+import com.jakewharton.rxbinding.view.RxView;
 import com.trello.rxlifecycle.android.ActivityEvent;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
 
 /**
  * Created by yanwenqiang on 2017/6/26.
@@ -74,6 +80,18 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
                 toast(apiException.message);
                 break;
         }
+    }
+
+    /**
+     * 防止多次点击／防抖<p>
+     * 阀值为1秒，1秒内只能点击一次
+     * @param view
+     * @return
+     */
+    protected Observable<Void> debounceClick(View view) {
+        // TODO: 2017/7/7 防止多次点击，下面阀值为1秒
+        return RxView.clicks(view)
+                .throttleFirst(1, TimeUnit.SECONDS);
     }
 
     /**

@@ -13,13 +13,10 @@ import com.centa.aplusframework.presenters.MainPresenter;
 import com.centa.aplusframework.repository.MainModel;
 import com.centa.centacore.interfaces.ISingleRequest;
 import com.centa.centacore.utils.WLog;
-import com.jakewharton.rxbinding.view.RxView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,16 +53,19 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
     @Override
     protected void initViews() {
         presenter = new MainPresenter(this, new MainModel());
-        RxView.clicks(mSignInBtn)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        WLog.p("点击一次");
-                        loadingDialog(getString(R.string.request_doing));
-                        presenter.login();
-                    }
-                });
+        debounceClick(mSignInBtn).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                WLog.p("点击一次");
+                loadingDialog(getString(R.string.request_doing));
+                presenter.login();
+            }
+        });
+    }
+
+    @Override
+    protected void initComplete() {
+
     }
 
     @OnClick({R.id.btn_eventbus})
@@ -76,11 +76,6 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
                 presenter.testEventBus();
             }
         }).start();
-    }
-
-    @Override
-    protected void initComplete() {
-
     }
 
     @Override
