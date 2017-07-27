@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public final class ApiCreator {
 
     private ApiCreator() {
-        //Utility Class
+        // Utility Class
     }
 
 
