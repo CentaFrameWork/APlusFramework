@@ -1,7 +1,6 @@
 package com.centa.aplusframework.presenters;
 
 import com.centa.aplusframework.contracts.MainContract;
-import com.centa.aplusframework.model.respdo.APlusRespDo;
 import com.centa.aplusframework.model.respdo.PermUserInfoDo;
 import com.centa.aplusframework.rx.APlusSubscriber;
 import com.centa.centacore.http.exception.ApiException;
@@ -10,7 +9,6 @@ import com.centa.centacore.utils.WLog;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yanwenqiang on 2017/6/28.
@@ -67,7 +65,7 @@ public class MainPresenter extends MainContract.Presenter {
         // TODO: 2017/7/2 A+ Api定制版本
         selfModel.userPermission(selfView.getStaffNo())
                 .compose(selfView.<ArrayList<PermUserInfoDo>>bindAPlusTransformer())
-                .subscribe(new APlusSubscriber<APlusRespDo<ArrayList<PermUserInfoDo>>>() {
+                .subscribe(new APlusSubscriber<ArrayList<PermUserInfoDo>>() {
                     @Override
                     protected void error(ApiException e) {
                         selfView.cancelLoadingDialog();
@@ -80,9 +78,8 @@ public class MainPresenter extends MainContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(APlusRespDo<ArrayList<PermUserInfoDo>> arrayListAPlusRespDo) {
-                        List<PermUserInfoDo> permUserInfoDo = arrayListAPlusRespDo.getResult();
-                        PermUserInfoDo permUserInfoEntity = permUserInfoDo.get(0);
+                    public void onNext(ArrayList<PermUserInfoDo> permUserInfoDos) {
+                        PermUserInfoDo permUserInfoEntity = permUserInfoDos.get(0);
                         String name = permUserInfoEntity.getIdentify().getUName();
                         WLog.p("结果", name);
                         selfView.showUser(name);

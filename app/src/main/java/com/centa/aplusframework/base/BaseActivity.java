@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.centa.aplusframework.BuildConfig;
 import com.centa.aplusframework.contracts.base.BaseView;
-import com.centa.aplusframework.model.respdo.APlusRespDo;
 import com.centa.aplusframework.rx.APlusTransformer;
 import com.centa.centacore.base.AbsActivity;
 import com.centa.centacore.http.exception.ApiException;
@@ -41,8 +40,6 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
 
     /**
      * 这个看似无价值，请不要删除，为P层getContext做引用
-     *
-     * @return
      */
     @Override
     public Context getContext() {
@@ -85,8 +82,6 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
     /**
      * 防止多次点击／防抖<p>
      * 阀值为1秒，1秒内只能点击一次
-     * @param view
-     * @return
      */
     protected Observable<Void> debounceClick(View view) {
         // TODO: 2017/7/7 防止多次点击，下面阀值为1秒
@@ -101,6 +96,6 @@ public abstract class BaseActivity extends AbsActivity implements BaseView {
      * 默认在BaseActivity中实现，P层也调用这里
      */
     public final <T> APlusTransformer<T> bindAPlusTransformer() {
-        return new APlusTransformer<>(this.<APlusRespDo<T>>bindUntilEvent(ActivityEvent.DESTROY));
+        return new APlusTransformer<>(this.<T>bindUntilEvent(ActivityEvent.DESTROY));
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.StringRes;
 
 import com.centa.aplusframework.contracts.base.BaseView;
-import com.centa.aplusframework.model.respdo.APlusRespDo;
 import com.centa.aplusframework.rx.APlusTransformer;
 import com.centa.centacore.base.AbsFragment;
 import com.trello.rxlifecycle.android.FragmentEvent;
@@ -47,6 +46,6 @@ public abstract class BaseFragment extends AbsFragment implements BaseView {
      * 默认在BaseFragment中实现，P层也调用这里
      */
     public final <T> APlusTransformer<T> bindAPlusTransformer() {
-        return new APlusTransformer<>(this.<APlusRespDo<T>>bindUntilEvent(FragmentEvent.DESTROY));
+        return new APlusTransformer<>(this.<T>bindUntilEvent(FragmentEvent.DESTROY));
     }
 }

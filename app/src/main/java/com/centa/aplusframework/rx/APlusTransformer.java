@@ -15,34 +15,35 @@ import rx.schedulers.Schedulers;
  * 描述:A+ Api统一的数据转换策略
  */
 public class APlusTransformer<T> implements
-        Observable.Transformer<APlusRespDo<T>, APlusRespDo<T>> {
+        Observable.Transformer<APlusRespDo<T>, T> {
 
-    private final LifecycleTransformer<APlusRespDo<T>> mLifecycleTransformer;
+    private final LifecycleTransformer<T> mLifecycleTransformer;
 
-    public APlusTransformer(LifecycleTransformer<APlusRespDo<T>> lifecycleTransformer) {
+    public APlusTransformer(LifecycleTransformer<T> lifecycleTransformer) {
         mLifecycleTransformer = lifecycleTransformer;
     }
 
     @Override
-    public Observable<APlusRespDo<T>> call(Observable<APlusRespDo<T>> observable) {
+    public Observable<T> call(Observable<APlusRespDo<T>> observable) {
         return observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<APlusRespDo<T>, APlusRespDo<T>>() {
+                .map(new Func1<APlusRespDo<T>, T>() {
                     @Override
-                    public APlusRespDo<T> call(APlusRespDo<T> aPlusRespDo) {
-                        if (!aPlusRespDo.isFlag()) {
+                    public T call(APlusRespDo<T> taPlusRespDo) {
+//                        taPlusRespDo.getResult();
+                        if (!taPlusRespDo.isFlag()) {
                             // TODO: 2017/7/2 这里暂时用500（服务器内部错误）因为A+的Api将返回code给屏蔽了
                             // 将来有code的时候，可以直接改成真正的response code
                             throw new ApiException(500,
-                                    aPlusRespDo.getErrorMsg());
+                                    taPlusRespDo.getErrorMsg());
                         }
-                        return aPlusRespDo;
+                        return taPlusRespDo.getResult();
                     }
                 })
-                .onErrorResumeNext(new Func1<Throwable, Observable<? extends APlusRespDo<T>>>() {
+                .onErrorResumeNext(new Func1<Throwable, Observable<? extends T>>() {
                     @Override
-                    public Observable<? extends APlusRespDo<T>> call(Throwable throwable) {
+                    public Observable<? extends T> call(Throwable throwable) {
                         throwable.printStackTrace();
                         return Observable.error(throwable);
                     }
