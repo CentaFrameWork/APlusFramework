@@ -23,9 +23,11 @@
 *   3.java 文件注释模版
 ```java 
     /**
-     * Created by ${USER} on ${DATE}.
+     * 描述:待描述.
      * <p>
-     * 描述:待描述
+     *
+     * @author ${USER}.
+     * @date ${DATE}
      */
 ```
 *   4.注释掉的代码请删除
