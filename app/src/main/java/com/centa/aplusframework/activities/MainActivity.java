@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
     EditText mPasswordView;
     @BindView(R.id.btn_sign_in)
     Button mSignInBtn;
+
     @BindView(R.id.btn_eventbus)
     Button mEventbusBtn;
 
