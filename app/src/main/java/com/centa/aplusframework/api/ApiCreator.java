@@ -16,6 +16,7 @@ public final class ApiCreator {
 
     private ApiCreator() {
         // Utility Class
+
     }
 
 
@@ -39,5 +40,6 @@ public final class ApiCreator {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkHttpClient4Api.getInstance().getOkHttpClient())
                 .build();
+
     }
 }
