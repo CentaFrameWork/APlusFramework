@@ -2,9 +2,13 @@ package com.centa.centacore.base;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
@@ -18,7 +22,11 @@ import android.widget.Toast;
 import com.centa.centacore.R;
 import com.centa.centacore.utils.WLog;
 import com.centa.centacore.widgets.LoadingDialog;
+import com.tbruyelle.rxpermissions.Permission;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
+import rx.functions.Action1;
 
 /**
  * Created by yanwenqiang on 2017/6/18
@@ -39,6 +47,7 @@ public abstract class AbsActivity extends RxAppCompatActivity {
     public static final String TITLE_ACTIVITY = "TITLE_ACTIVITY";//页面标题
 
     private AlertDialog loadingDialog;
+    private AlertDialog mAlertDialog;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -240,6 +249,48 @@ public abstract class AbsActivity extends RxAppCompatActivity {
                 Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * 检查所需要的权限，并且进行授权操作
+     *
+     * @return
+     */
+    protected void checkPermission(String... permissions) {
+        new RxPermissions(this).requestEach(permissions)
+                .subscribe(new Action1<Permission>() {
+                    @Override
+                    public void call(Permission permission) {
+                        if (permission.granted) {
+                            return;
+                        }
+                        toast(permission.name + "-权限被拒绝");
+                        if (!permission.shouldShowRequestPermissionRationale) {//不在提示 授权对话框，提示用户手动开启该权限
+//                            snack("权限：" + permission.name + "需要手动开启");
+                            openPermission();
+                            return;
+                        }
+                    }
+                });
+    }
+
+    private void openPermission() {
+        mAlertDialog = mAlertDialog == null ? new AlertDialog.Builder(AbsActivity.this)
+                .setTitle("提示：")
+                .setMessage("点击确定跳转只权限页面开启相关权限")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getPackageName(), null));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("取消", null).create() : mAlertDialog;
+
+        if (!mAlertDialog.isShowing()) {
+            mAlertDialog.show();
         }
     }
 }
