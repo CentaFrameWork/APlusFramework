@@ -13,7 +13,7 @@ import com.trello.rxlifecycle.android.FragmentEvent;
  * <p>
  * 描述:BaseFragment
  */
-public abstract class BaseFragment extends AbsFragment implements BaseView {
+public abstract class BaseFragment<E> extends AbsFragment implements BaseView<E> {
 
     /**
      * 这个看似无价值，请不要删除，为P层getContext做引用

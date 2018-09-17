@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.centa.aplusframework.R;
 import com.centa.aplusframework.base.BaseActivity;
 import com.centa.aplusframework.contracts.MainContract;
+import com.centa.aplusframework.model.respdo.PermUserInfoDo;
 import com.centa.aplusframework.presenters.MainPresenter;
 import com.centa.aplusframework.repository.MainModel;
 import com.centa.centacore.interfaces.ISingleRequest;
@@ -27,7 +28,7 @@ import rx.functions.Action1;
 /**
  * A login screen that offers login via email/password.
  */
-public class MainActivity extends BaseActivity implements ISingleRequest, MainContract.View {
+public class MainActivity extends BaseActivity<PermUserInfoDo> implements ISingleRequest, MainContract.View<PermUserInfoDo> {
     // UI references.
     @BindView(R.id.actv_account)
     AutoCompleteTextView mAccountView;
@@ -133,4 +134,8 @@ public class MainActivity extends BaseActivity implements ISingleRequest, MainCo
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void updateData(PermUserInfoDo permUserInfoDo) {
+
+    }
 }

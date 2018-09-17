@@ -23,7 +23,7 @@ import rx.Observable;
  * <p>
  * 描述:业务层Activity基类
  */
-public abstract class BaseActivity extends AbsActivity implements BaseView {
+public abstract class BaseActivity<E> extends AbsActivity implements BaseView<E> {
     // TODO: 2017/6/26 计划加入框架的内容
     // 1.热更新    ----------------------------->待认领
     // 2.EventBus   --------------------------->【ok】

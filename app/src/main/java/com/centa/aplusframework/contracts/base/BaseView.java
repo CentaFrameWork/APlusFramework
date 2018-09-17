@@ -10,7 +10,7 @@ import com.centa.centacore.http.exception.ApiException;
  * <p>
  * 描述:MVP-View基类
  */
-public interface BaseView {
+public interface BaseView<E> {
     /**
      * 得到Activity的上下文
      *
@@ -34,4 +34,9 @@ public interface BaseView {
     void cancelLoadingDialog();
 
     void apiError(ApiException apiException);
+
+    /**
+     * 数据刷新
+     */
+    void updateData(E e);
 }

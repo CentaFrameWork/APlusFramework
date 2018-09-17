@@ -13,7 +13,7 @@ import butterknife.OnClick;
  * <p>
  * 描述:详情页面
  */
-public class DetailActivity extends BaseActivity {
+public class DetailActivity extends BaseActivity<Object> {
     @Override
     protected int layoutResId() {
         return R.layout.act_detail;
@@ -39,5 +39,10 @@ public class DetailActivity extends BaseActivity {
     @OnClick({R.id.fab})
     public void fabOnClick(View view) {
         snack("你好，刘德华！");
+    }
+
+    @Override
+    public void updateData(Object o) {
+
     }
 }

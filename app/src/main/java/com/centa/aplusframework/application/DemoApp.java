@@ -1,5 +1,8 @@
 package com.centa.aplusframework.application;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.centa.aplusframework.api.APlusHeadersInterceptor;
 import com.centa.centacore.http.LoggerInterceptor;
 import com.centa.centacore.http.okhttpclient.OkHttpClient4Api;
@@ -20,9 +23,15 @@ import okhttp3.OkHttpClient;
  * 描述:项目application总入口
  */
 public class DemoApp extends LitePalApplication {
+
+    private static int mTid;
+    private static Handler mHandler;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mTid = android.os.Process.myTid();
+        mHandler = new Handler(Looper.getMainLooper());
         WLog.setDebug(true);
         LitePal.initialize(this);
         initRetrofit();
@@ -41,5 +50,13 @@ public class DemoApp extends LitePalApplication {
                 .cache(new Cache(new File(getCacheDir(), "http"), 10 * 1024 * 1024))
                 .build();
         OkHttpClient4Api.initClient(okHttpClient);
+    }
+
+    public static Handler getHandler() {
+        return mHandler;
+    }
+
+    public static int getMainTid() {
+        return mTid;
     }
 }

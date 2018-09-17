@@ -2,6 +2,7 @@ package com.centa.aplusframework.api;
 
 import com.centa.centacore.http.okhttpclient.OkHttpClient4Api;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,9 +15,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public final class ApiCreator {
 
+    private final OkHttpClient mOkHttpClient;
+
     private ApiCreator() {
         // Utility Class
 
+        mOkHttpClient = OkHttpClient4Api.getInstance().getOkHttpClient();
     }
 
 
